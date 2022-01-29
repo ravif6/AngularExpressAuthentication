@@ -9,8 +9,6 @@ const {ObjectId} = require('mongodb');
 const CLIENT_ID='748490838001-jhij0iprrvpd293fs4rt3pg37hijgj1t.apps.googleusercontent.com';
 const googleClient =new OAuth2Client({clientId:CLIENT_ID});
 
-
-
 const db="mongodb+srv://ram:123@cluster0.ckfs2.mongodb.net/abc?retryWrites=true&w=majority"
 
 //mongoose.connect("mongodb://localhost:27017/yelp_camp",{useNewUrlParser:true});
@@ -23,7 +21,6 @@ mongoose.connect(db,{useNewUrlParser:true},err=>{
         console.log('connected to server');
     }
 })
-
 
 router.get('/',(req,res)=>{
     res.send('From api route')
@@ -188,19 +185,6 @@ function verifyToken(req,res,next)
     } 
    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 router.get('/events',(req,res)=>{

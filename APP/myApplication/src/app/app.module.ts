@@ -1,6 +1,6 @@
-import { TokenInterceptorService } from './token-interceptor.service';
-import { EventService } from './event.service';
-import { AuthService } from './auth.service';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+import { EventService } from './services/event.service';
+import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -10,14 +10,21 @@ import { LoginComponent } from './login/login.component';
 import { RegularEventsComponent } from './regular-events/regular-events.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http'
+import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 
-
+//Ngxs
+import { NgxsModule } from '@ngxs/store';
+//Ngxs logger plugins
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+//Ngxs Dev Tools plugins
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 import {SocialAuthServiceConfig} from 'angularx-social-login';
 import {
   GoogleLoginProvider,SocialLoginModule
 } from 'angularx-social-login';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { RegularEventsState } from './store/state/users.states';
 
 
 
@@ -27,7 +34,8 @@ import {
     RegisterComponent,
     LoginComponent,
     RegularEventsComponent,
-    SpecialEventsComponent
+    SpecialEventsComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,13 @@ import {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule, 
+
+    //Ngxs
+    NgxsModule.forRoot([RegularEventsState]),
+    //Ngxs logger plugins
+    NgxsLoggerPluginModule.forRoot(), 
+    NgxsReduxDevtoolsPluginModule.forRoot(),
   ],
   providers: [AuthService,EventService,
   {
