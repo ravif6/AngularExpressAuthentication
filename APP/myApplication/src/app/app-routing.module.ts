@@ -5,12 +5,15 @@ import { LoginComponent } from './login/login.component';
 import { RegularEventsComponent } from './regular-events/regular-events.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 const routes: Routes = [
-  {path:'events',component:RegularEventsComponent},
+  {path:'register',component:RegisterComponent},
   {path:'login',component:LoginComponent},
-  {path:'special',component:SpecialEventsComponent,canActivate:[AuthGuard]},
-  {path:'register',component:RegisterComponent}
+  {path:'regular-events',component:RegularEventsComponent},
+  {path:'special-events',component:SpecialEventsComponent,canActivate:[AuthGuard]},
+  {path:'special-events/user-details',component:UserDetailComponent},
+  {path:'regular-events/user-details',component:UserDetailComponent}
 ];
 
 @NgModule({
