@@ -1,0 +1,4 @@
+<div> <b [ngClass]="{'Error':data.messageType==='error', 'Info': data.messageType==='info', 'Success': data.messageType==='success'}">{{data.message}}</b>
+
+<button style="float:right;"class="btn btn-secondary" (click)="snackBarRef.dismiss()">{{data.buttonText}}</button>
+</div>

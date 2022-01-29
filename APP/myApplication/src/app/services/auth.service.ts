@@ -3,6 +3,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import {Router} from '@angular/router'
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService implements OnDestroy {
   private _loginUrl ="http://localhost:5000/api/login";
   private _socialLoginUrl ="http://localhost:5000/api/social-login";
 
-  constructor(private http:HttpClient,private _router:Router,private socialAuthService: SocialAuthService) { }
+  constructor(private http:HttpClient,private _router:Router,private socialAuthService: SocialAuthService,private _notification:NotificationService) { }
  
 
   registerUser(user:any) :Observable<any>
@@ -42,11 +43,9 @@ export class AuthService implements OnDestroy {
   {
     localStorage.removeItem('token');
     this.socialAuthService.signOut();
-    this._router.navigate(['/events']);
+    this._notification.showNotification("You are now logged out","okay","success")
+    this._router.navigate(['/regular-events']);
   }
-
-
-
 
   socialUser!: SocialUser;
   isLoggedin: boolean=false; 

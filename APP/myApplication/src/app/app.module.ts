@@ -11,6 +11,7 @@ import { RegularEventsComponent } from './regular-events/regular-events.componen
 import { SpecialEventsComponent } from './special-events/special-events.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 //Ngxs
 import { NgxsModule } from '@ngxs/store';
@@ -25,6 +26,9 @@ import {
 } from 'angularx-social-login';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { RegularEventsState } from './store/state/users.states';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationComponent } from './notification/notification.component';
+import { NotificationService } from './services/notification.service';
 
 
 
@@ -35,7 +39,8 @@ import { RegularEventsState } from './store/state/users.states';
     LoginComponent,
     RegularEventsComponent,
     SpecialEventsComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -44,14 +49,14 @@ import { RegularEventsState } from './store/state/users.states';
     ReactiveFormsModule,
     HttpClientModule,
     SocialLoginModule, 
-
+    MatSnackBarModule,
     //Ngxs
     NgxsModule.forRoot([RegularEventsState]),
     //Ngxs logger plugins
     NgxsLoggerPluginModule.forRoot(), 
-    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot(), BrowserAnimationsModule,
   ],
-  providers: [AuthService,EventService,
+  providers: [AuthService,EventService,NotificationService,
   {
    provide:HTTP_INTERCEPTORS,useClass: TokenInterceptorService,multi:true
  },

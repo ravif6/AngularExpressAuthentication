@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import {Router} from '@angular/router'
 import { FormBuilder,} from '@angular/forms';
 import { SocialAuthService, } from 'angularx-social-login';
+import { NotificationService } from '../services/notification.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +12,7 @@ import { SocialAuthService, } from 'angularx-social-login';
 export class LoginComponent implements OnInit {
 
  
-  constructor(public _auth:AuthService,private _router:Router) { }
+  constructor(public _auth:AuthService,private _router:Router,private _notification:NotificationService) { }
   loginUserData={
     userName:"",
     password:""
@@ -22,10 +23,13 @@ export class LoginComponent implements OnInit {
     .subscribe(
       res=>{
         console.log(res)
+        this._notification.showNotification("login successful","ok","success")
         localStorage.setItem('token',res.token)
-        this._router.navigate(['/special']);
+        this._router.navigate(['/special-events']);
       },
-      err=>console.log(err),
+      err=>{
+        this._notification.showNotification(err.error,"ok","error")
+      },
     )
   }
     ngOnInit() {   
