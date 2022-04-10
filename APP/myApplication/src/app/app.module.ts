@@ -5,10 +5,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { RegularEventsComponent } from './regular-events/regular-events.component';
-import { SpecialEventsComponent } from './special-events/special-events.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { RegularEventsComponent } from './Events/regular-events/regular-events.component';
+import { SpecialEventsComponent } from './Events/special-events/special-events.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -24,11 +24,12 @@ import {SocialAuthServiceConfig} from 'angularx-social-login';
 import {
   GoogleLoginProvider,SocialLoginModule
 } from 'angularx-social-login';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserDetailComponent } from './Events/user-detail/user-detail.component';
 import { RegularEventsState } from './store/state/users.states';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NotificationComponent } from './notification/notification.component';
+import { NotificationComponent } from './reusable-components/notification/notification.component';
 import { NotificationService } from './services/notification.service';
+import { NotesComponent } from './reusable-components/notes/notes.component';
 
 
 
@@ -40,7 +41,8 @@ import { NotificationService } from './services/notification.service';
     RegularEventsComponent,
     SpecialEventsComponent,
     UserDetailComponent,
-    NotificationComponent
+    NotificationComponent,
+    NotesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,13 @@
-import { EventService } from '../services/event.service';
-import { Component, OnInit } from '@angular/core';
+import { EventService } from '../../services/event.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { GetRegularEvents, GetRegularEvents2 } from '../store/actions/users.action';
-import { RegularEventsState } from '../store/state/users.states';
-import { Observable } from 'rxjs';
+import { GetRegularEvents } from '../../store/actions/users.action';
+import { RegularEventsState } from '../../store/state/users.states';
+import { Observable, Subscription } from 'rxjs';
 
 export class RegularEvent{
-  userName: string ="";
-  password: string ="";
+  title: string ="";
+  text: string ="";
 }
 
 @Component({
@@ -16,9 +16,10 @@ export class RegularEvent{
   styleUrls: ['./regular-events.component.scss']
 })
 
-export class RegularEventsComponent implements OnInit {
+export class RegularEventsComponent implements OnInit,OnDestroy {
 
   events=[] as any
+  mysub!:Subscription;
   @Select(RegularEventsState.getRegularEvents) events$!:Observable<RegularEvent[]>
 
   constructor(private _eventService:EventService,private store:Store) { }
@@ -26,11 +27,10 @@ export class RegularEventsComponent implements OnInit {
   
   ngOnInit(): void {
      this.getRegularEvents();
-    //  this.events$.subscribe(res => {
-    //   console.log('res',res);
-    //   this.events=res;
-    //  })
-   // this.getRegularEvents2();
+     this.mysub=this.events$.subscribe(res => {
+      console.log('res',res);
+      this.events=res;
+     });
   }
 
   getRegularEvents(){
@@ -47,9 +47,10 @@ export class RegularEventsComponent implements OnInit {
   //   )
    }
 
-   getRegularEvents2(){
-    console.log('get regular 222222');
-    this.store.dispatch(new GetRegularEvents2());
+   ngOnDestroy(){
+     this.mysub.unsubscribe();
    }
+
+ 
 
 }

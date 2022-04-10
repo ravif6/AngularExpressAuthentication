@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import {Router} from '@angular/router'
 import { FormBuilder,} from '@angular/forms';
 import { SocialAuthService, } from 'angularx-social-login';
-import { NotificationService } from '../services/notification.service';
+import { NotificationService } from '../../services/notification.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       res=>{
         console.log(res)
         this._notification.showNotification("login successful","ok","success")
-        localStorage.setItem('token',res.token)
+        localStorage.setItem('token',res.id_token)
         this._router.navigate(['/special-events']);
       },
       err=>{

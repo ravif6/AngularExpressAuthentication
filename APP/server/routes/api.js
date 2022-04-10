@@ -2,6 +2,7 @@ const functions =require('./functions.js');
  const express=require('express')
  const router=express.Router()
 const User=require('../models/users')
+const RegularData=require('../models/regular-data')
  const mongoose=require("mongoose")
  const jwt = require('jsonwebtoken')
 const {ObjectId} = require('mongodb'); 
@@ -39,7 +40,7 @@ router.post('/register',async (req,res)=>{
      {
        let payload  = {subject : registeredUser._id}
        let token = jwt.sign(payload,'secretKey')
-         res.status(200).send({token})
+         res.status(200).send({"id_token":token,"userData":user})
          console.log("User registered Successfully");
      }
     })
@@ -66,15 +67,13 @@ router.post('/login',async (req,res)=>{
             {
                 let payload  = {subject : user._id}
                 let token = jwt.sign(payload,'secretKey')
-                res.status(200).send({token})
+                res.status(200).send({"id_token":token,"userData":user})
             }
         }
     
 
    
 })
-
-
 
 
 router.post('/social-login',async (req,res)=>
@@ -126,126 +125,6 @@ router.post('/social-login',async (req,res)=>
     } //find one 
 }
 );
-
-
-
-
-
-router.get('/events',(req,res)=>{
-    let events=[
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },{
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        }
-
-    ]
-    res.json(events)
-});
-
-router.get('/special',functions.verifyToken,(req,res,err)=>{
-    if(err)
-    {
-        console.error(err);
-    }
-    let events=[
-        {
-            "userName":"ram",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"ram",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"ram",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"ram",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },{
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        },
-        {
-            "userName":"he",
-            "password":"123",
-            "confirm":"123"
-        }
-    ]
-    res.json(events)
-});
-
 
 module.exports=router;
 
