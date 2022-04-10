@@ -29,6 +29,7 @@ import { RegularEventsState } from './store/state/users.states';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationComponent } from './notification/notification.component';
 import { NotificationService } from './services/notification.service';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -50,6 +51,7 @@ import { NotificationService } from './services/notification.service';
     HttpClientModule,
     SocialLoginModule, 
     MatSnackBarModule,
+    RouterModule,
     //Ngxs
     NgxsModule.forRoot([RegularEventsState]),
     //Ngxs logger plugins
