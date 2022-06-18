@@ -17,7 +17,7 @@ async function verifyGoogleLogin(token)
        return payload
     }
     return null
-}verifyGoogleLogin().catch(console.error);  //Use debug Module for logging errors know about it and use 
+}//verifyGoogleLogin().catch(console.error);  //Use debug Module for logging errors know about it and use 
 
 function verifyToken(req,res,next)
 {
