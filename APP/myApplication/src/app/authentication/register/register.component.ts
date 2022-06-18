@@ -1,4 +1,4 @@
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
 @Component({
@@ -23,8 +23,8 @@ export class RegisterComponent implements OnInit {
    .subscribe(
      res=>{
       console.log(res)
-      localStorage.setItem('token',res.token)
-      this._route.navigate(['/special']);
+      localStorage.setItem('token',res.id_token)
+      this._route.navigate(['/special-events']);
     },
      err=>console.log(err)
 )

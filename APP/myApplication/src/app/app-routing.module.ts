@@ -1,11 +1,11 @@
 import { AuthGuard } from './auth.guard';
-import { RegisterComponent } from './register/register.component';
-import { SpecialEventsComponent } from './special-events/special-events.component';
-import { LoginComponent } from './login/login.component';
-import { RegularEventsComponent } from './regular-events/regular-events.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { SpecialEventsComponent } from './Events/special-events/special-events.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { RegularEventsComponent } from './Events/regular-events/regular-events.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserDetailComponent } from './Events/user-detail/user-detail.component';
 
 const routes: Routes = [
   {path:'register',component:RegisterComponent},

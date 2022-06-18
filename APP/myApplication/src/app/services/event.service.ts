@@ -8,8 +8,8 @@ import { Injectable } from '@angular/core';
 export class EventService {
 
 
-  private _enentsUrl="http://localhost:5000/api/events";
-  private _specialEventsUrl = "http://localhost:5000/api/special"
+  private _enentsUrl="http://localhost:5000/events/regular";
+  private _specialEventsUrl = "http://localhost:5000/events/special"
   constructor(private http:HttpClient) { }
 
   getEvents():Observable<any>

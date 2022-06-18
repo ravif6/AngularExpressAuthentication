@@ -64,7 +64,7 @@ export class AuthService implements OnDestroy {
       res=>{
        console.log("response from server is --->",res)
        localStorage.setItem('token',res.id_token)
-       this._router.navigate(['/special']);
+       this._router.navigate(['/special-events']);
       },
       err=>console.log(err),
     ) 
