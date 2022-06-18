@@ -83,7 +83,7 @@ async function verifyGoogleLogin(token)
        return payload
     }
     return null
-}verifyGoogleLogin().catch(console.error);
+}
 
 
 
